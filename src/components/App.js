@@ -9,18 +9,20 @@ const getData = async () =>{
 }
 const Loader = () => <div id="loader">Loading...</div>
 const App = () => {
+  const[loading,setLoading] = useState(true);
   const [todos,setTodos] = useState([])
 
   useEffect(()=>{
     getData().then(data=> {
       setTodos(data)
+      setLoading(false);
      })
   },[])
   return (
     <div id="main">
       {
         loading ? <Loader /> :
-      todos.map(todo=> <div id={`todo-${todo.id}`}>{todo.title}</div>)
+      todos.map(todo=> <div key={`ky${todo.id}`} id={`todo-${todo.id}`}>{todo.title}</div>)
       }
     </div>
   )
